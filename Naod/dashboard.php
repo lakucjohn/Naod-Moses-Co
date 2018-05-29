@@ -4,7 +4,7 @@
 
 
     <div class="col-lg-3 col-sm-6">
-        <a href="doctor">
+        <a href="">
             <section class="panel">
                 <div class="symbol terques">
                     <i class="fa fa-stethoscope"></i>
@@ -15,9 +15,9 @@
                     <p>Cash Sale Receipts</p>
                 </div>
             </section>
-        </a></div><a href="doctor">
-    </a><div class="col-lg-3 col-sm-6"><a href="doctor">
-        </a><a href="patient">
+        </a></div><a href="">
+    </a><div class="col-lg-3 col-sm-6"><a href="">
+        </a><a href="">
             <section class="panel">
                 <div class="symbol blue">
                     <i class="fa fa-users"></i>
@@ -31,7 +31,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <a href="finance/payment">
+        <a href="">
             <section class="panel">
                 <div class="symbol blue">
                     <i class="fa fa-money"></i>
@@ -45,7 +45,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <a href="pharmacist">
+        <a href="">
             <section class="panel">
                 <div class="symbol terques">
                     <i class="fa  fa-medkit"></i>
@@ -59,7 +59,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <a href="patient/caseList">
+        <a href="">
             <section class="panel">
                 <div class="symbol blue">
                     <i class="fa fa-medkit"></i>
@@ -73,7 +73,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <a href="medicine">
+        <a href="">
             <section class="panel">
                 <div class="symbol blue">
                     <i class="fa fa-medkit"></i>
@@ -88,7 +88,7 @@
     </div>
 
     <div class="col-lg-3 col-sm-6">
-        <a href="department">
+        <a href="">
             <section class="panel">
                 <div class="symbol blue">
                     <i class="fa fa-dashboard"></i>
@@ -101,6 +101,4 @@
             </section>
         </a>
     </div>
-</div>
-
 </div>

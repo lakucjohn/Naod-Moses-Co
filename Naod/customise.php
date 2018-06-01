@@ -5,7 +5,7 @@
  * Date: 5/31/18
  * Time: 9:19 AM
  */
-require '../core_resources/connect.inc.php';
+
 
 $password_error = '';
 $company_name = '';
@@ -69,6 +69,7 @@ if(isset($_POST['save_app_settings'])){
                     $encodedImage = base64_encode($imageContent);
                 }
 
+                require '../core_resources/connect.inc.php';
                 #Preparing the Location Information
                 $location = $street.', '.$district.' - '.$country;
 

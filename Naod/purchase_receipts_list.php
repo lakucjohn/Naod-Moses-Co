@@ -46,7 +46,7 @@ $counter = 0;
                         <button class="btn btn-info"
                                 onclick="loadDocumentData('<?php echo $rs['supplier']; ?>','<?php echo $rs['receipt_number']; ?>');">
                             <i class="fa fa-info-circle"> More</i></button>
-                        <button class="btn btn-primary" onclick="setEditDocument('100100', 'Harbours', '10000')"><i
+                        <button class="btn btn-primary" onclick="setEditDocument('<?php echo $rs['supplier']; ?>','<?php echo $rs['receipt_number']; ?>')"><i
                                     class="fa fa-edit"> Edit</i></button>
                         <button class="btn btn-danger" data-toggle="modal" data-target="#deletePurchaseReceipt"
                                 onclick="setDeleteDocument('<?php echo $rs['supplier']; ?>','<?php echo $rs['receipt_number']; ?>')"><i class="fa fa-remove"> Delete</i></button>
@@ -106,7 +106,14 @@ $counter = 0;
         })
     }
 
-    function setEditDocument(){
-
+    function setEditDocument(supplier_id,document_id){
+        $.ajax({
+            url:"items-per-saved-purchase-receipt.php",
+            type:'post',
+            data:{'supplier':supplier_id,'document':document_id},
+            success:function(data){
+                $('#purchase-receipt-content').load('edit-purchase-receipt-content.php',{'supplierId':supplier_id,'documentId':document_id});
+            }
+        })
     }
 </script>

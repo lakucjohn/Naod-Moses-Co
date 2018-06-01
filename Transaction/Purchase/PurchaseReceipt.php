@@ -74,6 +74,8 @@ if(isset($_POST['action'])){
 
             $document = new PurchaseReceipt($documentId,$supplier,'');
             $document ->deleteReceipt();
+
+
         }
     }
 }

@@ -47,7 +47,7 @@ $counter = 0;
                         <button class="btn btn-info"
                                 onclick="loadPurchaseInvoiceData('<?php echo $rs['supplier']; ?>','<?php echo $rs['invoice_number']; ?>');">
                             <i class="fa fa-info-circle"> More</i></button>
-                        <button class="btn btn-primary" onclick="editPurchaseInvoiceDetails();"><i class="fa fa-edit"> Edit</i></button>
+                        <button class="btn btn-primary" onclick="setEditDocument('<?php echo $rs['supplier']; ?>','<?php echo $rs['invoice_number']; ?>');"><i class="fa fa-edit"> Edit</i></button>
                         <button class="btn btn-danger" data-toggle="modal" data-target="#deletePurchaseInvoice" onclick="setDeleteDocument('<?php echo $rs['supplier']; ?>','<?php echo $rs['invoice_number']; ?>');"><i class="fa fa-remove"> Delete</i></button>
                     </td>
                 </tr>
@@ -96,7 +96,7 @@ $counter = 0;
 
 <script>
     function loadPurchaseInvoiceData(supplierId, documentId){
-        Data = {'supplierId':supplierId,'documentId':documentId};
+         var Data = {'supplierId':supplierId,'documentId':documentId};
         $.ajax({
             url:"http://localhost/Naod-Moses-Co/Naod/items-per-saved-purchases-invoice.php",
             type:'post',
@@ -107,7 +107,15 @@ $counter = 0;
         });
     }
 
-    function setEditDocument(){
-
+    function setEditDocument(supplier_id, document_id){
+        var Data = {'supplierId':supplier_id, 'documentId':document_id};
+        $.ajax({
+            url:"http://localhost/Naod-Moses-Co/Naod/items-per-saved-purchases-invoice.php",
+            type:'post',
+            data:Data,
+            success: function(data){
+                $('#purchases-invoice-content').load('edit-purchase-invoice-content.php',Data);
+            }
+        });
     }
 </script>

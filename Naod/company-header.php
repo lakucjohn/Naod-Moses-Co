@@ -11,7 +11,7 @@ session_start();
 <div class="card header-card">
 
     <div class="card-body">
-        <?php echo '<img src="data:image;base64,'.$_SESSION['logo'].'" class="company-logo" height="150  width="150"/>';?>
+        <?php echo '<img src="data:image;base64,'.$_SESSION['logo'].'" class="company-logo" height="30%"  width="30%"/>';?>
     </div>
 </div>
 

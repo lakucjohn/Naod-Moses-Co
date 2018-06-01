@@ -8,11 +8,18 @@
 ?>
 <div id="cash-receipts-content">
 <div class="row">
-    <button class="btn btn-primary" onclick="replace_div_content('cash-receipts-content','items-per-sale-receipt.php');">Create New Cash Sale Receipt</button>
+
+    <div class="col-md-3"><button class="btn btn-primary" onclick="replace_div_content('cash-receipts-content','items-per-sale-receipt.php');">Create New Cash Sale Receipt</button></div>
+    <div class="col-md-9 text-center">
+        <div class="success_create_div" style="display: none;">Successfully Generated Receipt</div>
+        <div class="success_delete_div" style="display: none;">Successfully Deleted Receipt</div>
+    </div>
 </div>
 <p>
 <div class="row">
-    <?php include 'cash_sale_receipts_list.php'; ?>
+        <div id="cash-sale-receipts-list">
+            <?php include 'cash_sale_receipts_list.php'; ?>
+        </div>
 
 </div>
 </div>
@@ -29,7 +36,12 @@
             type:'post',
             data:{'action':'deleteDocument','documentId':document_id},
             success: function(data){
-                alert(document_id);
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                $('#cash-sale-receipts-list').load('cash-receipts.php #cash-sale-receipts-list', function() {
+
+                    $('.success_delete_div').finish().fadeIn("fast").delay(3000).fadeOut("slow");
+                });
             }
         });
     }

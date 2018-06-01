@@ -9,10 +9,13 @@
 ?>
 <div id="purchase-receipt-content">
     <div class="row">
-        <button class="btn btn-primary" onclick="createPurchaseReceipt()">Record New Cash Purchase Receipt</button>
-        <div class="success_create_div" style="display: none;">Successfully Generated Receipt</div>
-        <div class="success_delete_div" style="display: none;">Successfully Deleted Receipt</div>
-        <div class="success_edit_div" style="display: none;">Successfully Edited Receipt</div>
+        <div class="col-md-3"><button class="btn btn-primary" onclick="createPurchaseReceipt()">Record New Cash Purchase Receipt</button></div>
+        <div class="col-md-9 text-center">
+            <div class="success_create_div" style="display: none;">Successfully Generated Receipt</div>
+            <div class="success_delete_div" style="display: none;">Successfully Deleted Receipt</div>
+            <div class="success_edit_div" style="display: none;">Successfully Edited Receipt Information</div>
+        </div>
+
     </div>
     <p>
     <div class="row">
@@ -64,11 +67,18 @@
             type:'post',
             data:{'action':'deleteDocument','documentId':document_id,'supplierId':supplier_id},
             success: function(data){
-                $('#deletePurchaseReceipt').modal('hide');
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                $('#purchase-receipts-list').load('purchase-receipts.php #purchase-receipts-list', function() {
+
+                    $('.success_delete_div').finish().fadeIn("fast").delay(3000).fadeOut("slow");
+                });
+
+
             }
         });
 
-        replace_div_content('purchase-receipt-content','purchase_receipts_list.php');
-        $('.success_delete_div').finish().fadeIn("fast").delay(3000).fadeOut("slow");
+
     }
+
 </script>

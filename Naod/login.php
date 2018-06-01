@@ -5,8 +5,6 @@
  * Date: 5/31/18
  * Time: 9:18 AM
  */
-session_start();
-require '../core_resources/connect.inc.php';
 $getSystemSettings = "SELECT * FROM settings";
 if($getSystemSettingsRun = mysqli_query($db_conn, $getSystemSettings)){
     $rs = mysqli_fetch_assoc($getSystemSettingsRun);
@@ -18,6 +16,8 @@ if(isset($_POST['submit_user'])){
         $username_login = $_POST['username_login'];
         $password_login = $_POST['password_login'];
 
+        require '../core_resources/connect.inc.php';
+
         if(!empty($username_login)&&!empty($password_login)){
             $validateAdmin = "SELECT * FROM settings WHERE admin_username='$username_login' AND admin_password='$password_login'";
 
@@ -25,6 +25,7 @@ if(isset($_POST['submit_user'])){
                 if(mysqli_num_rows($validateAdminRun)==0){
                     $user_error = 'Invalid Username and/or Password';
                 }else{
+                    session_start();
                     $app_rs = mysqli_fetch_assoc($validateAdminRun);
                     $_SESSION['username'] = $app_rs['admin_username'];
                     $_SESSION['appname'] = $app_rs['application_name'];

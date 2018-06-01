@@ -5,24 +5,23 @@
  * Date: 5/19/18
  * Time: 2:23 PM
  */
-
+session_start();
 ?>
 
 <div class="card header-card">
 
     <div class="card-body">
-        <img src="..." alt="..." class="img-thumbnail" style="width:150px; height: 150px">
+        <?php echo '<img src="data:image;base64,'.$_SESSION['logo'].'" class="company-logo" height="150  width="150"/>';?>
     </div>
 </div>
 
-<div class="card header-card">
+<div class="card header-card right-content">
 
     <div class="card-body">
-        <h3 class="card-title">NAOD MOSES CO. LTD</h3>
+        <h3 class="card-title"><?php echo $_SESSION['company']; ?></h3>
         <p class="card-text">
-            Plot 1616 Mengo Hill Road,<br/>
-            Sheema House<br/>
+            <?php echo $_SESSION['location']; ?> <br>
 
-            Tel: +256 781 711 393 , +256 758 045 717.</p>
+            Tel: <?php echo $_SESSION['telephone']; ?>.</p>
     </div>
 </div>

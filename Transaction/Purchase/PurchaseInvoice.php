@@ -63,4 +63,17 @@ if(isset($_POST['invoiceName']) && isset($_POST['invoiceDate']) && isset($_POST[
         $purchaseInvoice->createNewInvoice();
     }
 }
+if(isset($_POST['action'])){
+    if($_POST['action'] == 'deleteDocument'){
+
+        if(isset($_POST['documentId'])&&isset($_POST['supplierId'])){
+            $documentId = $_POST['documentId'];
+            $supplier = $_POST['supplierId'];
+
+            $document = new PurchaseInvoice($documentId,$supplier,'','');
+            $document ->deleteInvoice();
+
+        }
+    }
+}
 ?>

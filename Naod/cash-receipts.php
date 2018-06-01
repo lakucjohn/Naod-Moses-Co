@@ -15,5 +15,22 @@
     <?php include 'cash_sale_receipts_list.php'; ?>
 
 </div>
-</p>
 </div>
+
+<script>
+    function setDeleteDocument(document_id){
+        CashSaleToDelete.setAttribute('value',document_id);
+    }
+
+    function DeleteDocument(){
+        var document_id = document.getElementById('CashSaleToDelete').value;
+        $.ajax({
+            url:'http://localhost/Naod-Moses-Co/Transaction/Sale/SaleReceipt.php',
+            type:'post',
+            data:{'action':'deleteDocument','documentId':document_id},
+            success: function(data){
+                alert(document_id);
+            }
+        });
+    }
+</script>

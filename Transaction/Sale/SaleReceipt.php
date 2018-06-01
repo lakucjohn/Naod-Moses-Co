@@ -61,4 +61,17 @@ if(isset($_POST['receiptName']) && isset($_POST['receiptDate']) && isset($_POST[
         $saleReceipt->createReceipt();
     }
 }
+
+if(isset($_POST['action'])){
+    if($_POST['action'] == 'deleteDocument'){
+
+        if(isset($_POST['documentId'])){
+            $documentId = $_POST['documentId'];
+
+            $document = new SaleReceipt($documentId,'','');
+            $document ->deleteReceipt();
+
+        }
+    }
+}
 ?>

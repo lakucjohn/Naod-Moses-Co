@@ -65,4 +65,16 @@ if(isset($_POST['receiptName']) && isset($_POST['receiptDate']) && isset($_POST[
     }
 }
 
+if(isset($_POST['action'])){
+    if($_POST['action'] == 'deleteDocument'){
+
+        if(isset($_POST['documentId'])&&isset($_POST['supplierId'])){
+            $documentId = $_POST['documentId'];
+            $supplier = $_POST['supplierId'];
+
+            $document = new PurchaseReceipt($documentId,$supplier,'');
+            $document ->deleteReceipt();
+        }
+    }
+}
 ?>

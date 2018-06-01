@@ -46,7 +46,7 @@ $counter = 0;
                                         onclick="loadDocumentData('<?php echo $rs['receipt_number']; ?>');">
                                     <i class="fa fa-info-circle"> More</i></button>
 <!--                                <button class="btn btn-primary"><i class="fa fa-edit"> Edit</i></button>-->
-                                <button class="btn btn-danger"><i class="fa fa-remove"> Delete</i></button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#deleteSaleReceipt" onclick="setDeleteDocument('<?php echo $rs['receipt_number']; ?>');"><i class="fa fa-remove"> Delete</i></button>
                             </td>
                         </tr>
                         <?php
@@ -60,6 +60,35 @@ $counter = 0;
 
     </tbody>
 </table>
+
+<div class="modal fade" id="deleteSaleReceipt" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"  style="background-color:#5A9599; color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+                <h4 class="modal-title"><i class="fa fa-plus-circle"></i> Confirm Delete Sales Receipt</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" action="" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="col-md-12">
+
+                            <h3 class="confirm-txt">Are you sure you want to delete this cash sales receipt ? </h3>
+
+                        </div>
+                    </div>
+                    <input type="hidden" id="CashSaleToDelete" />
+                    <section class="pull-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button"class="btn btn-danger" onclick="DeleteDocument();">Delete</button>
+                    </section>
+                </form>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+<!-- END MODAL/-->
 
 <script>
     function loadDocumentData(documentId){

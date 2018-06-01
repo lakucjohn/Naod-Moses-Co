@@ -15,6 +15,23 @@
         <?php include 'sales-invoice-list.php'; ?>
 
     </div>
-    </p>
 
 </div>
+
+<script>
+    function setDeleteDocument(document_id){
+        SalesInvoiceToDelete.setAttribute('value',document_id);
+    }
+
+    function DeleteDocument(){
+        var document_id = document.getElementById('SalesInvoiceToDelete').value;
+        $.ajax({
+            url:'http://localhost/Naod-Moses-Co/Transaction/Sale/SaleInvoice.php',
+            type:'post',
+            data:{'action':'deleteDocument','documentId':document_id},
+            success: function(data){
+                alert(document_id);
+            }
+        });
+    }
+</script>

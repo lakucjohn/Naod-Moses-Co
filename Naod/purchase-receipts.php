@@ -10,6 +10,9 @@
 <div id="purchase-receipt-content">
     <div class="row">
         <button class="btn btn-primary" onclick="createPurchaseReceipt()">Record New Cash Purchase Receipt</button>
+        <div class="success_create_div" style="display: none;">Successfully Generated Receipt</div>
+        <div class="success_delete_div" style="display: none;">Successfully Deleted Receipt</div>
+        <div class="success_edit_div" style="display: none;">Successfully Edited Receipt</div>
     </div>
     <p>
     <div class="row">
@@ -46,5 +49,26 @@
 
     function deletePurchaseReceipt(){
         var deletedreceiptno = document.getElementById('purchaseReceiptToDelete');
+    }
+
+    function setDeleteDocument(supplier_id,document_id){
+        PurchaseReceiptToDelete.setAttribute('value',document_id);
+        SupplyReceipterToDelete.setAttribute('value',supplier_id);
+    }
+
+    function DeleteDocument(){
+        var supplier_id = document.getElementById('SupplyReceipterToDelete').value;
+        var document_id = document.getElementById('PurchaseReceiptToDelete').value;
+        $.ajax({
+            url:'http://localhost/Naod-Moses-Co/Transaction/Purchase/PurchaseReceipt.php',
+            type:'post',
+            data:{'action':'deleteDocument','documentId':document_id,'supplierId':supplier_id},
+            success: function(data){
+                $('#deletePurchaseReceipt').modal('hide');
+            }
+        });
+
+        replace_div_content('purchase-receipt-content','purchase_receipts_list.php');
+        $('.success_delete_div').finish().fadeIn("fast").delay(3000).fadeOut("slow");
     }
 </script>

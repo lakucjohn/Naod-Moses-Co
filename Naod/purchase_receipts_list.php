@@ -46,10 +46,10 @@ $counter = 0;
                         <button class="btn btn-info"
                                 onclick="loadDocumentData('<?php echo $rs['supplier']; ?>','<?php echo $rs['receipt_number']; ?>');">
                             <i class="fa fa-info-circle"> More</i></button>
-                        <button class="btn btn-primary" onclick="setPurchaseReceiptDetails('100100', 'Harbours', '10000')"><i
+                        <button class="btn btn-primary" onclick="setEditDocument('100100', 'Harbours', '10000')"><i
                                     class="fa fa-edit"> Edit</i></button>
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#deleteSupplierReceipt"
-                                onclick="setPurchaseReceiptId('10010010')"><i class="fa fa-remove"> Delete</i></button>
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#deletePurchaseReceipt"
+                                onclick="setDeleteDocument('<?php echo $rs['supplier']; ?>','<?php echo $rs['receipt_number']; ?>')"><i class="fa fa-remove"> Delete</i></button>
                     </td>
                 </tr>
                 <?php
@@ -64,6 +64,36 @@ $counter = 0;
     </tbody>
 </table>
 
+<div class="modal fade" id="deletePurchaseReceipt" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"  style="background-color:#5A9599; color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+                <h4 class="modal-title"><i class="fa fa-plus-circle"></i> Confirm Delete Purchase Receipt</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" action="" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="col-md-12">
+
+                            <h3 class="confirm-txt">Are you sure you want to delete this purchase receipt ? </h3>
+
+                        </div>
+                    </div>
+                    <input type="hidden" id="PurchaseReceiptToDelete" />
+                    <input type="hidden" id="SupplyReceipterToDelete" />
+                    <section class="pull-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button"class="btn btn-danger" onclick="DeleteDocument();">Delete</button>
+                    </section>
+                </form>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+<!-- END MODAL/-->
+
 <script>
     function loadDocumentData(supplierId, documentId){
         $.ajax({
@@ -76,7 +106,7 @@ $counter = 0;
         })
     }
 
-    function setPurchaseReceiptDetails(){
+    function setEditDocument(){
 
     }
 </script>

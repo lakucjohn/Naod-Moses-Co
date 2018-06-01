@@ -16,5 +16,24 @@
         <?php include 'purchase_invoice_list.php'; ?>
 
     </div>
-    </p>
 </div>
+
+<script>
+    function setDeleteDocument(supplier_id,document_id){
+        PurchaseInvoiceToDelete.setAttribute('value',document_id);
+        SupplyInvoicerToDelete.setAttribute('value',supplier_id);
+    }
+
+    function DeleteDocument(){
+        var supplier_id = document.getElementById('SupplyInvoicerToDelete').value;
+        var document_id = document.getElementById('PurchaseInvoiceToDelete').value;
+        $.ajax({
+            url:'http://localhost/Naod-Moses-Co/Transaction/Purchase/PurchaseInvoice.php',
+            type:'post',
+            data:{'action':'deleteDocument','documentId':document_id,'supplierId':supplier_id},
+            success: function(data){
+                alert(data);
+            }
+        });
+    }
+</script>

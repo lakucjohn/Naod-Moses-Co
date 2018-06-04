@@ -5,6 +5,8 @@
  * Date: 5/10/18
  * Time: 6:39 PM
  */
+
+#This class manages the default content of any sale invoice issued to a customer
 require '../InvoiceContent.php';
 require '../../Inventory/SpareParts/Spares/SparePartManager.php';
 class SaleInvoiceContent extends InvoiceContent{
@@ -39,6 +41,8 @@ function getUniqueId(){
     return $stringSet;
 }
 
+#Handling ajax post requests
+#THis is for inserting a new sale invoice document
 if(isset($_POST['new_document_data'])) {
     $receivedJSON = $_POST['new_document_data'];
 
@@ -83,7 +87,7 @@ if(isset($_POST['new_document_data'])) {
                                     $itemId = $prs['part_id'];
                                 }else{
 
-                                    #if it does not exist
+                                    #if it does not exist, give it a random unique Id and save it to the database
 
                                     $itemId = getUniqueId();
                                     $sparePartManager = new SparePartManager();

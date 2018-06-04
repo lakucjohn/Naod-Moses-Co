@@ -8,13 +8,18 @@
 require_once '../person.php';
 require_once 'SupplierManager.php';
 
+#This file is for handling all direct operations that happen on a supplier
 class supplier extends person{
 
+    #This is a person that the company connects with to communicate with the supplier
     private $contactPerson;
 
+    #This variable is an object that will use the functions in the class SupplierManager.php
     private $supplierManager;
+    #This is the contact of the person that the coompany connects to to communicate with the company
     private $contactPersonPhone;
 
+    #Setting the sefault values of any supplier
     public function __construct($personName, $personAddress, $personContact,$email,$contactPerson,$contactPersonPhone)
     {
         parent::__construct($personName, $personAddress, $personContact,$email);
@@ -23,11 +28,13 @@ class supplier extends person{
         $this->supplierManager = new SupplierManager();
     }
 
+    #THis is the function to add a new supplier to the database
     public function addPerson()
     {
         $this->supplierManager->Register($this->personalId,$this->personName,$this->personAddress,$this->email,$this->personContact,$this->contactPerson,$this->contactPersonPhone);
     }
 
+    #This is the function to edit a supplier
     public function editPerson($personId)
     {
         $this->personalId=$personId;
@@ -35,6 +42,7 @@ class supplier extends person{
 
     }
 
+    #This function deletes the supplier from the database
     public function deletePerson($personId)
     {
         $this->personalId=$personId;
@@ -44,8 +52,10 @@ class supplier extends person{
 
 
 }
+#Handling the various ajax post requests
 if(isset($_POST['action'])){
 
+    #This code adds a user posted by ajax from suppliers.php
     if($_POST['action']=='addSupplier'){
 
         #This code add a new supplier to the system
@@ -70,7 +80,7 @@ if(isset($_POST['action'])){
 
     }
 
-    #This code edits a supplier
+    #This code edits a supplier posted by ajax from suppliers.php
     if($_POST['action']=='editSupplier'){
 
         if(isset($_POST['supplierNameEdited'])
@@ -94,7 +104,7 @@ if(isset($_POST['action'])){
         }
     }
 
-    #This code deletes a suppier from the system
+    #This code deletes a suppier from the system. It is posted by ajax from suppliers.php
     if($_POST['action']=='deleteSupplier'){
 
         if(isset($_POST['deletedSupplierId'])){

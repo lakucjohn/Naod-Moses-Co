@@ -5,8 +5,11 @@
  * Date: 5/10/18
  * Time: 4:15 PM
  */
+#Instantiating the category manager which handles inseriotn, editing and deleting of product categories
 require 'CategoryManager.php';
 $category = new CategoryManager();
+
+#Handling the ajax post request from categorylist.php
 if(isset($_POST['addCategory'])){
     if(isset($_POST['categoryId'])&&isset($_POST['categoryName'])&&isset($_POST['categoryDescription'])){
 
@@ -18,6 +21,8 @@ if(isset($_POST['addCategory'])){
 
     }
 }
+
+#Handling the ajax request to edit a product category
 if(isset($_POST['editCategory'])){
     if(isset($_POST['editedCategoryId'])&&isset($_POST['editedCategoryName'])&&isset($_POST['editedCategoryDescription'])){
         $editedCategoryId = $_POST['editedCategoryId'];
@@ -28,6 +33,8 @@ if(isset($_POST['editCategory'])){
 
     }
 }
+
+#Processing the deletion of a product category
 if(isset($_POST['deleteCategory'])){
     if(isset($_POST['deletedCategoryId'])){
         $deletedCategory = $_POST['deletedCategoryId'];

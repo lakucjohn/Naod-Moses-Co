@@ -7,11 +7,14 @@
  */
 require_once '../person.php';
 require_once 'CustomerManager.php';
+
+#This is the file that processes information received from ajax
 class customer extends person{
 
     public $contactPerson;
     private $customerManager;
 
+    #setting the default requirements for managing a customer
     public function __construct($personName, $personAddress, $personContact,$email,$contactPerson,$contactPersonPhone)
     {
         parent::__construct($personName, $personAddress, $personContact,$email);
@@ -20,11 +23,13 @@ class customer extends person{
         $this->customerManager = new CustomerManager();
     }
 
+    #This function adds a new customer to the database
     public function addPerson()
     {
         $this->customerManager->Register($this->personalId,$this->personName,$this->personAddress,$this->email,$this->personContact,$this->contactPerson,$this->contactPersonPhone);
     }
 
+    #THis function is for editing a supplier in the database
     public function editPerson($personId)
     {
         $this->personalId=$personId;
@@ -32,6 +37,7 @@ class customer extends person{
 
     }
 
+    #THis code deletes a supplier from the database
     public function deletePerson($personId)
     {
         $this->personalId=$personId;
@@ -41,8 +47,11 @@ class customer extends person{
 
 
 }
+
+#Now handling ajax requests
 if(isset($_POST['action'])){
 
+    #This code adds a new adds the new customer posted by ajax from customers.php
     if($_POST['action']=='addCustomer'){
 
         #This code add a new customer to the system
@@ -67,7 +76,7 @@ if(isset($_POST['action'])){
 
     }
 
-    #This code edits a customer
+    #This code edits a selected customer posted by ajax from customers.php
     if($_POST['action']=='editCustomer'){
 
         if(isset($_POST['customerNameEdited'])
@@ -91,7 +100,7 @@ if(isset($_POST['action'])){
         }
     }
 
-    #This code deletes a suppier from the system
+    #This code deletes a customer from the system. its values are from customers.php
     if($_POST['action']=='deleteCustomer'){
 
         if(isset($_POST['deletedCustomerId'])){

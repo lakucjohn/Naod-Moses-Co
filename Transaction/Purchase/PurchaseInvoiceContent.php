@@ -5,16 +5,20 @@
  * Date: 5/10/18
  * Time: 6:39 PM
  */
+#This file handles the content of a purchase made on credit
 require '../InvoiceContent.php';
 require '../../Inventory/SpareParts/Spares/SparePartManager.php';
 class PurchaseInvoiceContent extends InvoiceContent{
     public $owner;
+
+    #Dictatting the nature of an invoice
     public function __construct($invoiceNumber, $sparePartId, $quantity, $description, $price,$amount,$owner)
     {
         parent::__construct($invoiceNumber, $sparePartId, $quantity, $description, $price,$amount);
         $this->owner = $owner;
     }
 
+    #Adding content to a specific invoice specified byt its number and owner(supplier)
     public function addInvoiceContent(){
         $supplier = $this->owner;
         $documentId = $this->invoiceNumber;
@@ -26,23 +30,17 @@ class PurchaseInvoiceContent extends InvoiceContent{
 
     }
 
+    #Edting the content of a saved invoice
     public function editInvoiceContent(){
         $sql = "UPDATE purchases_invoice_content SET quantity='$this->quantity',description='$this->description', price=$this->price, amount=$this->amount WHERE invoice_number='$this->invoiceNumber' AND spare_part='$this->sparePartId' AND supplier='$this->owner'";
         mysqli_query($this->connect,$sql);
     }
 
+    #Deleting the content of an incoming invoice
     public function deleteInvoiceContent(){
         $sql = "UPDATE purchases_invoice_content SET status=0 WHERE invoice_number='$this->invoiceNumber' AND spare_part='$this->sparePartId' AND supplier='$this->owner'";
         mysqli_query($this->connect,$sql);
     }
-}
-
-function getUniqueId(){
-    $stringSet = '0000000111111122222223333333444444455555556666666777777788888889999999';
-    $stringSet = str_shuffle($stringSet);
-    $stringSet = substr($stringSet, 0, 7);
-
-    return $stringSet;
 }
 
 if(isset($_POST['new_document_data'])) {
@@ -51,27 +49,21 @@ if(isset($_POST['new_document_data'])) {
     #Conquering the incoming JSON to form arrays
     $owner = $receivedJSON[0]['document_details']['invoiceName'];
 
+    #Getting the owner of the document
     $ownerCheckSql = "SELECT supplier_id FROM suppliers WHERE supplier_name = '$owner'";
 
     if($ownerCheckSqlRun = mysqli_query($db_conn, $ownerCheckSql)){
         if(mysqli_num_rows($ownerCheckSqlRun) != 0){
             $rs = mysqli_fetch_assoc($ownerCheckSqlRun);
             $owner = $rs['supplier_id'];
-        }else{
-            $supplierId = getUniqueId();
-            $saveSupplierSql = "INSERT INTO suppliers(supplier_id, supplier_name, supplier_address, email, telephone, contact_person, contact_person_phone) VALUES ('$supplierId','$owner','none','none','none','none','none')";
-
-            mysqli_query($db_conn, $saveSupplierSql);
-
-
-            $owner = $supplierId;
-
         }
     }
 
+    #Getting the id of the invoice
     $documentId = $receivedJSON[0]['document_details']['invoiceNumber'];
     //print_r($receivedJSON);
 
+    #processing the incoming JSON of invoice content
     foreach($receivedJSON as $jsonObject => $documentObject){
         if($jsonObject == 1){
             foreach($documentObject as $documentItem => $itemList){

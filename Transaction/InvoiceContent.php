@@ -5,6 +5,8 @@
  * Date: 5/10/18
  * Time: 6:39 PM
  */
+
+#This class sets the required values for the content of every invoice
 class InvoiceContent{
     public $invoiceNumber;
     public $sparePartId;

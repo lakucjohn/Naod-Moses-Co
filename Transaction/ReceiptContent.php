@@ -5,6 +5,7 @@
  * Date: 5/10/18
  * Time: 6:39 PM
  */
+#This is what the content of every receipt must have
 $db_conn = mysqli_connect('localhost','root','','naod_moses_co_ltd');
 class ReceiptContent{
     public $receiptNumber;
@@ -14,6 +15,8 @@ class ReceiptContent{
     public $price;
     public $amount;
     public $connect;
+
+    #Setting the values of instantiation as the default values
     public function __construct($receiptNumber,$sparePartId,$quantity,$description,$price, $amount)
     {
         global $db_conn;

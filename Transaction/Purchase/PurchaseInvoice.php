@@ -29,6 +29,7 @@ class PurchaseInvoice extends Invoice{
 
 }
 
+#This function is repeated for convenience
 function getUniqueId(){
     $stringSet = '0000000111111122222223333333444444455555556666666777777788888889999999';
     $stringSet = str_shuffle($stringSet);
@@ -36,20 +37,26 @@ function getUniqueId(){
 
     return $stringSet;
 }
-#Manipulating data from the interface
+#Manipulating data from the interface. The data is sent her by ajax
 if(isset($_POST['invoiceName']) && isset($_POST['invoiceDate']) && isset($_POST['invoiceNumber']) && isset($_POST['invoiceAmount'])){
     $invoiceName = $_POST['invoiceName'];
     $invoiceNumber = $_POST['invoiceNumber'];
     $invoiceDate = $_POST['invoiceDate'];
     $invoiceAmount = $_POST['invoiceAmount'];
 
+    #Check if the owner(Supplier) exists in the database
     $ownerCheckSql = "SELECT customer_number FROM customers WHERE customer_name = '$invoiceName'";
 
     if($ownerCheckSqlRun = mysqli_query($db_conn, $ownerCheckSql)){
+
+        #If he exists in the database
         if(mysqli_num_rows($ownerCheckSqlRun) != 0){
             $rs = mysqli_fetch_assoc($ownerCheckSqlRun);
+
+            #Get the Id of the supplier
             $owner = $rs['customer_number'];
         }else{
+            #If he does not exist, generate a seven character Id and assign it to him and save him in the database.
             $ownerId = getUniqueId();
             $saveSupplierSql = "INSERT INTO suppliers(supplier_id, supplier_name, supplier_address, email, telephone, contact_person, contact_person_phone) VALUES ('$ownerId','$invoiceName','none','none','none','none','none')";
 
@@ -63,6 +70,8 @@ if(isset($_POST['invoiceName']) && isset($_POST['invoiceDate']) && isset($_POST[
         $purchaseInvoice->createNewInvoice();
     }
 }
+
+#This code deletes a purchase invoice
 if(isset($_POST['action'])){
     if($_POST['action'] == 'deleteDocument'){
 

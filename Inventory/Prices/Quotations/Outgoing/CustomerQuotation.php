@@ -14,6 +14,7 @@ class CustomerQuotation{
     private $Transaction_Type;
     private $DbQuote;
 
+    #Setting the default values of a customer price quotation
     public function __construct($sparePartId, $measure,$Transaction_Type, $price)
     {
 
@@ -25,15 +26,18 @@ class CustomerQuotation{
 
     }
 
+    #This function records the processed quotation to the database directly
     public function setOutQuotation(){
         $this->DbQuote->addQuotation($this->sparePartId,$this->Transaction_Type,$this->measure,$this->price);
     }
 
+    #This function changes values regarding a specific price quotation directly
     public function editOutQuotation()
     {
         $this->DbQuote->editQuotation($this->sparePartId,$this->Transaction_Type,$this->measure,$this->price);
     }
 
+    #This function directly deletes the transaction from the database
     public function deleteOutQuotation($id){
         $this->DbQuote->deleteQuotation($this->sparePartId,$this->Transaction_Type);
     }

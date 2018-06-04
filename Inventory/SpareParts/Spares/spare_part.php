@@ -10,6 +10,7 @@ require 'SparePartManager.php';
 
 $sparePart = new SparePartManager();
 
+#This code adds a new spare part posted by ajax from spares.php
 if(isset($_POST['saveNewPart'])) {
     if (isset($_POST['sparePartId']) && isset($_POST['sparePartName']) && isset($_POST['sparePartCategory']) && isset($_POST['sparePartDescription']) && isset($_POST['sparePartModel']) && isset($_POST['packagingOptions'])) {
         $sparePartId = $_POST['sparePartId'];
@@ -25,6 +26,7 @@ if(isset($_POST['saveNewPart'])) {
     }
 }
 
+#This code edits the selected spare part posted by ajax from spares.php
 if(isset($_POST['editSparePart'])) {
     if (isset($_POST['editedSparePartId']) && isset($_POST['editedSparePartName']) && isset($_POST['editedSparePartCategory']) && isset($_POST['editedSparePartDescription']) && isset($_POST['editedSparePartModel'])) {
         $sparePartId = $_POST['editedSparePartId'];
@@ -39,6 +41,7 @@ if(isset($_POST['editSparePart'])) {
     }
 }
 
+#THis code deletes the selected spare part that was confirmed for deletion
 if(isset($_POST['deleteSparePart'])){
     if(isset($_POST['sparePartIdDeleted'])){
         $sparePartId = $_POST['sparePartIdDeleted'];

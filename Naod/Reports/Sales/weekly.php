@@ -1,5 +1,5 @@
 <?php
-
+$getWeekDataSql = "SELECT";
 ?>
 <p>&nbsp</p>
 <h3>Weekly Sales Report</h3>

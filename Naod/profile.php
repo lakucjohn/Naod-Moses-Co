@@ -68,7 +68,7 @@
                                 <ul class="nav child_menu">
                                     <li><a href="http://localhost/Naod-Moses-Co/Naod/spares.php" class="side_menu_bar">Spare Parts</a></li>
                                     <li><a href="http://localhost/Naod-Moses-Co/Naod/stock-grouping.php" class="side_menu_bar">Categories</a></li>
-                                    <!--                                    <li><a href="http://localhost/Naod-Moses-Co/Naod/in-stock.php" class="side_menu_bar">In Stock</a></li>-->
+                                    <li><a href="http://localhost/Naod-Moses-Co/Naod/in-stock.php" class="side_menu_bar">In Stock</a></li>
                                 </ul>
                             </li>
 

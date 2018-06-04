@@ -99,12 +99,12 @@
 
                             <li><a><i class="fa fa-clone"></i>Reports <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="#" class="side_menu_bar">Purchases</a></li>
-                                    <li><a href="#" class="side_menu_bar">Sales</a></li>
-                                    <li><a href="#" class="side_menu_bar">Suppliers</a></li>
-                                    <li><a href="#" class="side_menu_bar">Customers</a></li>
-                                    <li><a href="#" class="side_menu_bar">Inventory</a></li>
-                                    <li><a href="#" class="side_menu_bar">Customize</a></li>
+                                    <li><a href="http://localhost/Naod-Moses-Co/Naod/Reports/purchases.php" class="side_menu_bar">Purchases</a></li>
+                                    <li><a href="http://localhost/Naod-Moses-Co/Naod/Reports/sales.php" class="side_menu_bar">Sales</a></li>
+                                    <li><a href="http://localhost/Naod-Moses-Co/Naod/Reports/suppliers.php" class="side_menu_bar">Suppliers</a></li>
+                                    <li><a href="http://localhost/Naod-Moses-Co/Naod/Reports/customers.php" class="side_menu_bar">Customers</a></li>
+                                    <li><a href="http://localhost/Naod-Moses-Co/Naod/Reports/inventory.php" class="side_menu_bar">Inventory</a></li>
+                                    <li><a href="http://localhost/Naod-Moses-Co/Naod/Reports/custom.php" class="side_menu_bar">Custom Report</a></li>
 
                                 </ul>
                             </li>
